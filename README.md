@@ -1,4 +1,4 @@
-# 💓 Heart Disease Prediction API
+# 💓 End-to-End Heart Disease Prediction Web API (ML + Flask)
 
 An end-to-end Machine Learning project that predicts the likelihood of heart disease using clinical parameters. The project includes model training, API development with Flask, and deployment using Render.
 
