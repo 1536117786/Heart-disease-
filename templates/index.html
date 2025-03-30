@@ -2,65 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>❤️ Heart Disease Prediction</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to right, #ffe6e6, #fff);
-            padding: 40px;
-            text-align: center;
-        }
-        .container {
-            max-width: 700px;
-            margin: auto;
-            padding: 30px;
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2);
-        }
-        h1 {
-            color: #cc0000;
-        }
-        .quote {
-            font-size: 16px;
-            margin-bottom: 20px;
-            color: #444;
-            font-style: italic;
-        }
-        input, select {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-        button {
-            padding: 12px 25px;
-            background: #cc0000;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: green;
-        }
-    </style>
+    <title>❤️ Heart Disease Predictor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="container">
         <h1>❤️ Heart Disease Predictor</h1>
-        <p class="quote">"Eat healthy, live longer. Take care of your heart today for a stronger tomorrow."</p>
+        <p class="quote">"A healthy heart is a key to a healthy life. Monitor your health regularly!"</p>
 
         <form method="POST" action="/predict">
-            <input type="text" name="patient_name" placeholder="Enter patient name">
+            <label>🌍 Choose Language:</label>
+            <select name="language">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="te">Telugu</option>
+                <option value="es">Spanish</option>
 
-            <input type="number" name="age" placeholder="Age">
+            <select name="language">
+                    <option value="en" selected>English</option>
+                    <option value="te">Telugu</option>
+                    <option value="hi">Hindi</option>
+            </select>
+                
+            </select>
 
+            <input type="text" name="patient_name" placeholder="Enter your name">
+
+            <input type="number" name="age" placeholder="Age (e.g., 45)">
+            
             <select name="sex">
                 <option disabled selected>Select Gender</option>
                 <option value="1">Male</option>
@@ -68,40 +37,39 @@
             </select>
 
             <select name="cp">
-                <option disabled selected>Select Chest Pain Type (0 = Typical, 1 = Atypical, 2 = Non-anginal, 3 = Asymptomatic)</option>
+                <option disabled selected>Select Chest Pain Type</option>
                 <option value="0">Typical Angina</option>
                 <option value="1">Atypical Angina</option>
-                <option value="2">Non-Anginal Pain</option>
+                <option value="2">Non-Anginal</option>
                 <option value="3">Asymptomatic</option>
             </select>
 
-            <input type="number" name="trestbps" placeholder="Resting Blood Pressure (mm Hg)">
-
-            <input type="number" name="chol" placeholder="Serum Cholesterol (mg/dl)">
-
+            <input type="number" name="trestbps" placeholder="Resting Blood Pressure (e.g., 120)">
+            <input type="number" name="chol" placeholder="Cholesterol (e.g., 200)">
+            
             <select name="fbs">
-                <option disabled selected>Fasting Blood Sugar > 120 mg/dl?</option>
+                <option disabled selected>Fasting Sugar > 120 mg/dl?</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select>
 
             <select name="restecg">
-                <option disabled selected>Resting ECG Result</option>
+                <option disabled selected>ECG Result</option>
                 <option value="0">Normal</option>
-                <option value="1">ST-T Abnormality</option>
+                <option value="1">ST-T Abnormal</option>
                 <option value="2">Left Ventricular Hypertrophy</option>
             </select>
 
             <input type="number" name="thalach" placeholder="Max Heart Rate Achieved">
-
+            
             <select name="exang">
                 <option disabled selected>Exercise Induced Angina?</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select>
 
-            <input type="number" step="any" name="oldpeak" placeholder="ST Depression Induced by Exercise">
-
+            <input type="number" step="any" name="oldpeak" placeholder="ST Depression (e.g., 1.0)">
+            
             <select name="slope">
                 <option disabled selected>Slope of ST Segment</option>
                 <option value="0">Upsloping</option>
@@ -109,21 +77,17 @@
                 <option value="2">Downsloping</option>
             </select>
 
-            <input type="number" name="ca" placeholder="No. of Major Vessels Colored by Fluoroscopy (0-3)">
-
+            <input type="number" name="ca" placeholder="No. of Major Vessels (0–3)">
+            
             <select name="thal">
                 <option disabled selected>Thalassemia</option>
+                <option value="0">Normal</option>
                 <option value="1">Fixed Defect</option>
                 <option value="2">Reversible Defect</option>
-                <option value="0">Normal</option>
             </select>
 
-            <button type="submit">Predict</button>
+            <button type="submit">💓 Predict</button>
         </form>
-
-        {% if prediction_text %}
-            <div class="result">{{ prediction_text }}</div>
-        {% endif %}
     </div>
 </body>
 </html>

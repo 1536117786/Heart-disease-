@@ -11,48 +11,58 @@ scaler = pickle.load(open('scaler.pkl', 'rb'))
 
 app = Flask(__name__)
 
-# Route for homepage with form
+# Route for homepage
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# Route for prediction via web form
+# Route for form prediction and result page
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Get all form data
+        # Get form data
         form_data = dict(request.form)
 
-        # Extract patient name (not used in prediction)
+        # Extract patient name and language
         patient_name = form_data.pop("patient_name", "User")
+        language = form_data.pop("language", "en")
 
-        # Convert input values to float
+        # Convert remaining form values to float
         input_values = [float(val) for val in form_data.values()]
         features = np.array([input_values])
         scaled = scaler.transform(features)
         prediction = model.predict(scaled)[0]
-        result = "✅ No Heart Disease" if prediction == 0 else "⚠️ Heart Disease Detected"
 
-        # Save to CSV
+        result_text = "✅ No Heart Disease" if prediction == 0 else "⚠️ Heart Disease Detected"
+
+        # Log predictions to CSV
         log_entry = {
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "patient_name": patient_name,
             **form_data,
             "prediction": int(prediction),
-            "result": result
+            "result": result_text
         }
+
         df_log = pd.DataFrame([log_entry])
         if os.path.exists('predictions_log.csv'):
             df_log.to_csv('predictions_log.csv', mode='a', header=False, index=False)
         else:
             df_log.to_csv('predictions_log.csv', mode='w', header=True, index=False)
 
-        return render_template('index.html', prediction_text=f"{patient_name}, your result: {result}")
+        # Render result page
+        return render_template(
+            'result.html',
+            patient_name=patient_name,
+            prediction_text=result_text,
+            prediction=int(prediction),
+            language=language
+        )
 
     except Exception as e:
         return render_template('index.html', prediction_text=f"Error: {str(e)}")
 
-# Optional JSON API
+# Optional: API Endpoint for JSON requests
 @app.route('/predict_api', methods=['POST'])
 def predict_api():
     data = request.get_json()
