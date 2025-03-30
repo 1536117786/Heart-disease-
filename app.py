@@ -18,19 +18,27 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Get form values and convert to float
-        values = [float(request.form.get(key)) for key in request.form]
+        # Get all form data
+        form_data = dict(request.form)
+
+        # Extract patient name (not used in prediction)
+        patient_name = form_data.pop("patient_name", "User")
+
+        # Convert remaining values to float
+        values = [float(val) for val in form_data.values()]
         features = np.array([values])
         scaled = scaler.transform(features)
         prediction = model.predict(scaled)[0]
 
+        # Make result human-readable
         result = "✅ No Heart Disease" if prediction == 0 else "⚠️ Heart Disease Detected"
-        return render_template('index.html', prediction_text=f"Prediction: {result}")
+
+        return render_template('index.html', prediction_text=f"{patient_name}, your result: {result}")
 
     except Exception as e:
         return render_template('index.html', prediction_text=f"Error: {str(e)}")
 
-# Optional JSON API version (same as before)
+# Optional JSON API version
 @app.route('/predict_api', methods=['POST'])
 def predict_api():
     data = request.get_json()
