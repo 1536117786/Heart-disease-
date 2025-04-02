@@ -1,0 +1,12 @@
+timestamp,patient_name,age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal,prediction,result
+2025-03-30 09:45:20,pavan,25,1,0,129,1180,0,0,180,0,0,1,0,0,0,✅ No Heart Disease
+2025-03-30 10:15:16,pavan,25,1,1,180,278,1,1,159,1,1.5,0,2,0,0,✅ No Heart Disease
+2025-03-30 11:14:12,pavan,25,1,1,180,278,1,1,159,1,1.5,0,2,0,0,✅ No Heart Disease
+2025-03-30 11:16:11,kalyan,23,1,3,180,300,1,2,140,1,2.5,2,2,1,1,⚠️ Heart Disease Detected
+2025-04-01 09:45:08,kalyan,23,1,3,180,300,1,2,140,1,2.5,2,2,1,1,⚠️ Heart Disease Detected
+2025-04-01 09:45:30,kalyan,23,1,3,180,300,1,2,140,1,2.5,2,2,1,1,⚠️ Heart Disease Detected
+2025-04-01 09:45:42,pavan,25,1,1,180,278,1,1,159,1,1.5,0,2,0,0,✅ No Heart Disease
+2025-04-02 10:17:33,sai,27,1,0,120,228,0,1,130,0,1.0,1,2,0,1,⚠️ Heart Disease Detected
+2025-04-02 10:19:42,pavan,27,1,0,120,228,0,1,130,0,1.0,1,2,0,1,⚠️ Heart Disease Detected
+2025-04-02 10:19:47,pavan,27,1,0,120,228,0,1,130,0,1.0,1,2,0,1,⚠️ Heart Disease Detected
+2025-04-02 17:38:20,mahesh,26,1,1,130,180,0,0,165,0,2,0,2,0,0,✅ No Heart Disease

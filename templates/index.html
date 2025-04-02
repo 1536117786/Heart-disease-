@@ -11,32 +11,31 @@
         <p class="quote">"A healthy heart is a key to a healthy life. Monitor your health regularly!"</p>
 
         <form method="POST" action="/predict">
+            <!-- Language -->
             <label>🌍 Choose Language:</label>
-            <select name="language">
-                <option value="en">English</option>
+            <select name="language" required>
+                <option value="en" selected>English</option>
                 <option value="hi">Hindi</option>
                 <option value="te">Telugu</option>
                 <option value="es">Spanish</option>
-
-            <select name="language">
-                    <option value="en" selected>English</option>
-                    <option value="te">Telugu</option>
-                    <option value="hi">Hindi</option>
-            </select>
-                
+                <!-- You can add more languages here -->
             </select>
 
-            <input type="text" name="patient_name" placeholder="Enter your name">
+            <!-- Name -->
+            <input type="text" name="patient_name" placeholder="Enter your name" required>
 
-            <input type="number" name="age" placeholder="Age (e.g., 45)">
-            
-            <select name="sex">
+            <!-- Age -->
+            <input type="number" name="age" placeholder="Age (e.g., 45)" required>
+
+            <!-- Sex -->
+            <select name="sex" required>
                 <option disabled selected>Select Gender</option>
                 <option value="1">Male</option>
                 <option value="0">Female</option>
             </select>
 
-            <select name="cp">
+            <!-- Chest Pain Type -->
+            <select name="cp" required>
                 <option disabled selected>Select Chest Pain Type</option>
                 <option value="0">Typical Angina</option>
                 <option value="1">Atypical Angina</option>
@@ -44,50 +43,66 @@
                 <option value="3">Asymptomatic</option>
             </select>
 
-            <input type="number" name="trestbps" placeholder="Resting Blood Pressure (e.g., 120)">
-            <input type="number" name="chol" placeholder="Cholesterol (e.g., 200)">
-            
-            <select name="fbs">
+            <!-- Resting Blood Pressure -->
+            <input type="number" name="trestbps" placeholder="Resting Blood Pressure (e.g., 120)" required>
+
+            <!-- Cholesterol -->
+            <input type="number" name="chol" placeholder="Cholesterol (e.g., 200)" required>
+
+            <!-- Fasting Blood Sugar -->
+            <select name="fbs" required>
                 <option disabled selected>Fasting Sugar > 120 mg/dl?</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select>
 
-            <select name="restecg">
+            <!-- Rest ECG -->
+            <select name="restecg" required>
                 <option disabled selected>ECG Result</option>
                 <option value="0">Normal</option>
                 <option value="1">ST-T Abnormal</option>
                 <option value="2">Left Ventricular Hypertrophy</option>
             </select>
 
-            <input type="number" name="thalach" placeholder="Max Heart Rate Achieved">
-            
-            <select name="exang">
+            <!-- Max Heart Rate -->
+            <input type="number" name="thalach" placeholder="Max Heart Rate Achieved" required>
+
+            <!-- Exercise Induced Angina -->
+            <select name="exang" required>
                 <option disabled selected>Exercise Induced Angina?</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select>
 
-            <input type="number" step="any" name="oldpeak" placeholder="ST Depression (e.g., 1.0)">
-            
-            <select name="slope">
+            <!-- ST Depression -->
+            <input type="number" step="any" name="oldpeak" placeholder="ST Depression (e.g., 1.0)" required>
+
+            <!-- Slope -->
+            <select name="slope" required>
                 <option disabled selected>Slope of ST Segment</option>
                 <option value="0">Upsloping</option>
                 <option value="1">Flat</option>
                 <option value="2">Downsloping</option>
             </select>
 
-            <input type="number" name="ca" placeholder="No. of Major Vessels (0–3)">
-            
-            <select name="thal">
+            <!-- Number of Major Vessels -->
+            <input type="number" name="ca" placeholder="No. of Major Vessels (0–3)" required>
+
+            <!-- Thalassemia -->
+            <select name="thal" required>
                 <option disabled selected>Thalassemia</option>
                 <option value="0">Normal</option>
                 <option value="1">Fixed Defect</option>
                 <option value="2">Reversible Defect</option>
             </select>
 
+            <!-- Submit Button -->
             <button type="submit">💓 Predict</button>
         </form>
+
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
     </div>
 </body>
 </html>

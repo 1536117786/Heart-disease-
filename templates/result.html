@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>❤️ Heart Disease Prediction Result</h1>
+        <p class="quote">"Your heart deserves the best care. Thank you for using our service!"</p>
+
+        <div class="result">
+            <p>{{ patient_name }}, your result: <strong>{{ prediction_text }}</strong></p>
+        </div>
+
+        <div class="explanation">
+            {% if prediction == 0 %}
+                <p>🎉 Good news! No signs of heart disease detected based on your input. Keep maintaining a healthy lifestyle. 💪</p>
+                <ul>
+                    <li>🫀 Stay active with at least 30 minutes of exercise daily</li>
+                    <li>🥗 Eat more vegetables, fruits, and whole grains</li>
+                    <li>😴 Sleep well and manage stress effectively</li>
+                    <li>💧 Stay hydrated and avoid smoking</li>
+                </ul>
+            {% else %}
+                <p>⚠️ Caution: The model detected potential signs of heart disease.</p>
+                <p>Please consult a healthcare provider for further diagnosis and advice.</p>
+
+                <div class="youtube-box">
+                    <h3>📺 Recommended Videos:</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=Y1Rx-Bx5Q_0" target="_blank">What Causes Heart Disease?</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=FY6W_P3DlJA" target="_blank">Lifestyle Tips for a Healthy Heart</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=oZXvGM2lC7s" target="_blank">Signs of a Heart Attack</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <br>
+        <a href="/" class="btn">🔁 Predict for Another User</a>
+    </div>
+</body>
+</html>
