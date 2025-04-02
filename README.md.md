@@ -133,8 +133,8 @@ heart-disease-api/
 ## 👨‍💻 Author
 
 **Pavan Kumar**  
-📧 [your-email@example.com]  
-🔗 [LinkedIn Profile](https://linkedin.com/in/yourprofile)
+📧 pavan.dandi11@gmail.com  
+🔗 www.linkedin.com/in/pavankumardandi
 
 ---
 
